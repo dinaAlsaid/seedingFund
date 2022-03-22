@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const NavBar = (props) => {
   const navItems = [
     { title: "home", link: "/", onClick: () => {} },
-    { title: "blog", link: "/portfolio", onClick: () => {} },
+    { title: "blog", link: "/blog", onClick: () => {} },
     {
       title: "portfolio",
       link: "/portfolio",
@@ -32,6 +32,12 @@ const NavBar = (props) => {
       link: "/",
       onClick: () => {},
     },
+    {
+      title: "SignUp",
+      link: "/SignUp",
+      onClick: () => {},
+    },
+
   ];
   return (
     <Navbar bg="light" expand="lg" sticky="top">
