@@ -6,8 +6,7 @@ export const SignupForm = (props) => {
   const {
     register,
     handleSubmit,
-    setError,
-    getValues,watch,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -16,16 +15,6 @@ export const SignupForm = (props) => {
     //IF TOKEN => logged in and redirect
     //ELSE SETERRORR
     console.log(data);
-  };
-  const matchPassword = (val) => {
-    if (val !== getValues("Password") || val !== getValues("ConfirmPassword")) {
-      setError("ConfirmPassword", {
-        type: "manual",
-        message: "passwords don't match",
-      });
-      return false;
-    }
-    console.log(val);
   };
 
   return (
@@ -36,12 +25,9 @@ export const SignupForm = (props) => {
           placeholder="user name"
           {...register("userName", {
             required: { value: true, message: "This field is required" },
-            
           })}
         />
-        {errors.userName && (
-          <span className="text-danger">{errors.userName.message}</span>
-        )}
+        {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="Password">
@@ -52,13 +38,11 @@ export const SignupForm = (props) => {
           {...register("Password", {
             required: { value: true, message: "This field is required" },
             validate: {
-              checkMatch: val=>val===watch("ConfirmPassword"),
-              message:"passwords don't match"},
+              checkMatch: (val) => (val === getValues("ConfirmPassword") ? true : "passwords don't match"),
+            },
           })}
         />
-        {errors.Password && (
-          <span className="text-danger">{errors.Password.message}</span>
-        )}
+        {errors.Password && <span className="text-danger">{errors.Password.message}</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="ConfirmPassword">
@@ -69,19 +53,17 @@ export const SignupForm = (props) => {
           {...register("ConfirmPassword", {
             required: { value: true, message: "This field is required" },
             validate: {
-              checkMatch: val=>val===watch("Password"),
-              message:"passwords don't match"},
+              checkMatch: (val) => (val === getValues("Password") ? true : "passwords don't match"),
+            },
           })}
         />
-        {errors.ConfirmPassword && (
-          <span className="text-danger">{errors.ConfirmPassword.message}</span>
-        )}
+        {errors.ConfirmPassword && <span className="text-danger">{errors.ConfirmPassword.message}</span>}
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Account Type</Form.Label>
-        <Form.Check type="radio" name="AccountType" label={`Admin`} />
-        <Form.Check type="radio" name="AccountType" label={`Project Owner`} />
+        <Form.Check type="radio" defaultChecked value="Admin" name="AccountType" label={`Admin`} {...register("AccountType")}/>
+        <Form.Check type="radio" value="Project Owner" name="AccountType" label={`Project Owner`} {...register("AccountType")}/>
       </Form.Group>
 
       <Button variant="primary" type="submit">
