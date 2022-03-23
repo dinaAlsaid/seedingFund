@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
+import { RegisterContext } from "../../context/registration";
 
 export const SignupForm = (props) => {
+  const registration=useContext(RegisterContext);
+
   const {
     register,
     handleSubmit,
@@ -14,6 +17,7 @@ export const SignupForm = (props) => {
     //API CALL TO LOGIN
     //IF TOKEN => logged in and redirect
     //ELSE SETERRORR
+    registration.signup({usename:data.username, password:data.password})
     console.log(data);
   };
 
@@ -23,19 +27,19 @@ export const SignupForm = (props) => {
         <Form.Label>User Name</Form.Label>
         <Form.Control
           placeholder="user name"
-          {...register("userName", {
+          {...register("username", {
             required: { value: true, message: "This field is required" },
           })}
         />
-        {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
+        {errors.username && <span className="text-danger">{errors.username.message}</span>}
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="Password">
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Password"
-          {...register("Password", {
+          placeholder="password"
+          {...register("password", {
             required: { value: true, message: "This field is required" },
             validate: {
               checkMatch: (val) => (val === getValues("ConfirmPassword") ? true : "passwords don't match"),
@@ -53,7 +57,7 @@ export const SignupForm = (props) => {
           {...register("ConfirmPassword", {
             required: { value: true, message: "This field is required" },
             validate: {
-              checkMatch: (val) => (val === getValues("Password") ? true : "passwords don't match"),
+              checkMatch: (val) => (val === getValues("password") ? true : "passwords don't match"),
             },
           })}
         />
@@ -62,8 +66,21 @@ export const SignupForm = (props) => {
 
       <Form.Group className="mb-3">
         <Form.Label>Account Type</Form.Label>
-        <Form.Check type="radio" defaultChecked value="Admin" name="AccountType" label={`Admin`} {...register("AccountType")}/>
-        <Form.Check type="radio" value="Project Owner" name="AccountType" label={`Project Owner`} {...register("AccountType")}/>
+        <Form.Check
+          type="radio"
+          defaultChecked
+          value="Admin"
+          name="AccountType"
+          label={`Admin`}
+          {...register("AccountType")}
+        />
+        <Form.Check
+          type="radio"
+          value="Project Owner"
+          name="AccountType"
+          label={`Project Owner`}
+          {...register("AccountType")}
+        />
       </Form.Group>
 
       <Button variant="primary" type="submit">
