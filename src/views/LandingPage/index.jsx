@@ -6,7 +6,11 @@ export const LandingPage = () => {
   let navigate = useNavigate();
 
   const redirectToPage = (e) => {
-    navigate("FundingRequest",{state:{behaviour:e.target.value}});
+    if (e.target.value === "inquire") {
+      navigate("/Projects", { state: { behaviour: e.target.value } });
+    } else if (e.target.value === "register") {
+      navigate("/FundingRequest", { state: { behaviour: e.target.value } });
+    }
   };
 
   return (
