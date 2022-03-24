@@ -1,26 +1,23 @@
 import "./App.css";
-import NavBar from "./components/navBar";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./views/Login";
-import { Signup } from "./views/Signup";
+import { LandingPage } from "./views/LandingPage";
+import { FundingReq } from "./views/FundingReq";
+import { Layout } from "./components/Layout";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/SignUp" element={<Signup />} />
-
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/FundingRequest" element={<FundingReq />} />
+            <Route path="/Login" element={<Login />} />
+          </Routes>
+        </Layout>
       </Router>
-      <header className="App-header"></header>
-    </div>
+    </>
   );
 }
 

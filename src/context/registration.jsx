@@ -5,7 +5,7 @@ import cookie from "react-cookies";
 
 export const RegisterContext = React.createContext();
 function RegisterProvider(props) {
-  const [loggedIn, setloggedIn] = useState(false);
+  const [loggedIn, setloggedIn] = useState(true);
   const [user, setuser] = useState({});
   const [token, setToken] = useState("");
 
@@ -17,7 +17,7 @@ function RegisterProvider(props) {
       setLoginState(true, token, user);
     } catch (e) {
       console.log(`TOKEN validation ERROR ${e.message}`);
-      setLoginState(false, null, {});
+      // setLoginState(false, null, {});
     }
   };
 
