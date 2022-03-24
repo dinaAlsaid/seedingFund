@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
 export const FundingReq = (props) => {
-  const [reqStatus, setreqStatus] = useState("")
   const [screenBehaviour, setscreenBehaviour] = useState("register")
   let location = useLocation();
 

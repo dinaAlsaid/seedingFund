@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import jwt from "jwt-decode";
 import axios from "axios";
 import cookie from "react-cookies";
