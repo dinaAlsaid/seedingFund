@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
-import { RegisterContext } from "../../context/registration";
 
 export const LoginForm = (props) => {
   const {
@@ -9,38 +8,32 @@ export const LoginForm = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    //API CALL TO LOGIN
-    //IF TOKEN => logged in and redirect
-    //ELSE SETERRORR
-    console.log(data);
-  };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(props.onSubmit)}>
       <fieldset>
         <legend>Sign in</legend>
-        <Form.Group className="mb-3" controlId="userName">
+        <Form.Group className="mb-3" controlId="username">
           <Form.Label>User Name</Form.Label>
           <Form.Control
             placeholder="user name"
-            {...register("userName", {
+            {...register("username", {
               required: { value: true, message: "This field is required" },
             })}
           />
-          {errors.userName && <span className="text-danger">{errors.userName.message}</span>}
+          {errors.username && <span className="text-danger">{errors.username.message}</span>}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="Password">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
-            {...register("Password", {
+            placeholder="password"
+            {...register("password", {
               required: { value: true, message: "This field is required" },
             })}
           />
-          {errors.Password && <span className="text-danger">{errors.Password.message}</span>}
+          {errors.password && <span className="text-danger">{errors.password.message}</span>}
         </Form.Group>
 
         <Button variant="primary" type="submit">
@@ -52,7 +45,6 @@ export const LoginForm = (props) => {
 };
 
 export const SignupForm = (props) => {
-  const registration = useContext(RegisterContext);
 
   const {
     register,
@@ -61,20 +53,12 @@ export const SignupForm = (props) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    //API CALL TO LOGIN
-    //IF TOKEN => logged in and redirect
-    //ELSE SETERRORR
-    registration.signup({ usename: data.username, password: data.password });
-    console.log(data);
-  };
-
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(props.onSubmit)}>
       <fieldset>
         <legend>Sign up</legend>
 
-        <Form.Group className="mb-3" controlId="userName">
+        <Form.Group className="mb-3" controlId="username">
           <Form.Label>User Name</Form.Label>
           <Form.Control
             placeholder="user name"
@@ -85,34 +69,34 @@ export const SignupForm = (props) => {
           {errors.username && <span className="text-danger">{errors.username.message}</span>}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="Password">
-          <Form.Label>Password</Form.Label>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>password</Form.Label>
           <Form.Control
             type="password"
             placeholder="password"
             {...register("password", {
               required: { value: true, message: "This field is required" },
               validate: {
-                checkMatch: (val) => (val === getValues("ConfirmPassword") ? true : "passwords don't match"),
+                checkMatch: (val) => (val === getValues("Confirmpassword") ? true : "passwords don't match"),
               },
             })}
           />
-          {errors.Password && <span className="text-danger">{errors.Password.message}</span>}
+          {errors.password && <span className="text-danger">{errors.password.message}</span>}
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="ConfirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
+        <Form.Group className="mb-3" controlId="Confirmpassword">
+          <Form.Label>Confirm password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirm Password"
-            {...register("ConfirmPassword", {
+            placeholder="Confirm password"
+            {...register("Confirmpassword", {
               required: { value: true, message: "This field is required" },
               validate: {
                 checkMatch: (val) => (val === getValues("password") ? true : "passwords don't match"),
               },
             })}
           />
-          {errors.ConfirmPassword && <span className="text-danger">{errors.ConfirmPassword.message}</span>}
+          {errors.Confirmpassword && <span className="text-danger">{errors.Confirmpassword.message}</span>}
         </Form.Group>
 
         <Form.Label>Account Type</Form.Label>

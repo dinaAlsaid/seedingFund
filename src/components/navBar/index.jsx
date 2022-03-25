@@ -40,6 +40,12 @@ const NavBar = (props) => {
       onClick: () => {},
       show: !registerContext.loggedIn,
     },
+    {
+      title: "Logout",
+      link: "/",
+      onClick: () => {registerContext.logout()},
+      show: registerContext.loggedIn,
+    },
   ];
   return (
     <Navbar bg="light" expand="lg" sticky="top">
@@ -53,7 +59,7 @@ const NavBar = (props) => {
             {navItems.map(
               (item) =>(
                 item.show && (
-                  <NavLink to={item.link} key={item.title} className="nav-link">
+                  <NavLink to={item.link} key={item.title} className="nav-link" onClick={item.onClick}>
                     {item.title}
                   </NavLink>
                 ))
