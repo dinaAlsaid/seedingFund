@@ -21,7 +21,6 @@ export const RequestForm = (props) => {
 
   const onSubmit = (data) => {
     props.onSubmit(data);
-    console.log(data);
     reset();
   };
 
@@ -52,14 +51,14 @@ export const RequestForm = (props) => {
           <Form.Select
             disabled={disableForm}
             aria-label="Sector select"
-            {...register("Sector", {
+            {...register("sector", {
               required: { value: true, message: "This field is required" },
             })}
           >
-            <option value="Private">Private</option>
-            <option value="Government">Government</option>
+            <option value="private">Private</option>
+            <option value="government">Government</option>
           </Form.Select>
-          {errors.Sector && <span className="text-danger">{errors.Sector.message}</span>}
+          {errors.sector && <span className="text-danger">{errors.sector.message}</span>}
         </Form.Group>
         <Form.Group className="mb-3" controlId="description">
           <Form.Label>Project description</Form.Label>
