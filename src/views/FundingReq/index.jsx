@@ -8,21 +8,21 @@ import axios from "axios";
 export const FundingReq = (props) => {
   const registration = useContext(RegisterContext);
   const [screenBehaviour, setscreenBehaviour] = useState("register");
+  const [projectData, setprojectData] = useState({});
 
   let location = useLocation();
 
   useEffect(() => {
     if (location.state?.behaviour === "inquire") {
       setscreenBehaviour("inquire");
-      // setreqStatus("pending")//for now
+      setprojectData(location.state.data);
     } else {
       setscreenBehaviour("register");
     }
   }, [location.state]);
 
-  const onSubmit = (data) => {
-    console.log(data,registration.token);
-    axios({
+  const onSubmit = async (data) => {
+    await axios({
       method: "post",
       baseURL: `http://localhost:4000/project`,
       data,
@@ -36,7 +36,11 @@ export const FundingReq = (props) => {
     <Container>
       <Row className="mt-5 justify-content-center">
         <Col sm={8} md={7} lg={6}>
-          <RequestForm screenBehaviour={screenBehaviour} onSubmit={onSubmit} />
+          <RequestForm
+            screenBehaviour={screenBehaviour}
+            onSubmit={onSubmit}
+            projectData={projectData}
+          />
         </Col>
       </Row>
     </Container>

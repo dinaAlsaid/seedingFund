@@ -7,6 +7,7 @@ export const RequestForm = (props) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm();
@@ -16,8 +17,11 @@ export const RequestForm = (props) => {
       setdisableForm(false);
     } else {
       setdisableForm(true);
+      setValue("projectName", props.projectData?.projectName);
+      setValue("sector", props.projectData?.sector);
+      setValue("description", props.projectData?.description);
     }
-  }, [props.screenBehaviour]);
+  }, [props.screenBehaviour, props.projectData]);
 
   const onSubmit = (data) => {
     props.onSubmit(data);
@@ -28,12 +32,24 @@ export const RequestForm = (props) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <fieldset className="border p-5">
         <legend>{props.screenBehaviour}</legend>
-        {disableForm&&(<>
-          <Form.Label className="me-2">Request Status</Form.Label>
-          <Badge pill bg="warning" text="dark">
-            Pending
-          </Badge>{" "}
-        </>)}
+        {disableForm && (
+          <>
+            <Form.Label className="me-2">Request Status</Form.Label>
+            <Badge
+              pill
+              bg={
+                props.projectData?.status === "pending"
+                  ? "warning"
+                  : props.projectData?.status === "rejected"
+                  ? "danger"
+                  : "success"
+              }
+              text="dark"
+            >
+              {props.projectData?.status}
+            </Badge>{" "}
+          </>
+        )}
 
         <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Project Name</Form.Label>
@@ -44,7 +60,9 @@ export const RequestForm = (props) => {
               required: { value: true, message: "This field is required" },
             })}
           />
-          {errors.projectName && <span className="text-danger">{errors.projectName.message}</span>}
+          {errors.projectName && (
+            <span className="text-danger">{errors.projectName.message}</span>
+          )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="Sector">
           <Form.Label>Sector</Form.Label>
@@ -58,7 +76,9 @@ export const RequestForm = (props) => {
             <option value="private">Private</option>
             <option value="government">Government</option>
           </Form.Select>
-          {errors.sector && <span className="text-danger">{errors.sector.message}</span>}
+          {errors.sector && (
+            <span className="text-danger">{errors.sector.message}</span>
+          )}
         </Form.Group>
         <Form.Group className="mb-3" controlId="description">
           <Form.Label>Project description</Form.Label>
@@ -70,7 +90,9 @@ export const RequestForm = (props) => {
               required: { value: true, message: "This field is required" },
             })}
           />
-          {errors.description && <span className="text-danger">{errors.description.message}</span>}
+          {errors.description && (
+            <span className="text-danger">{errors.description.message}</span>
+          )}
         </Form.Group>
         {!disableForm && (
           <Button variant="primary" type="submit">
