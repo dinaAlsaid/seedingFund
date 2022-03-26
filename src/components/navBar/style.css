@@ -1,0 +1,18 @@
+.nav-link {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.grey-text{
+    color: lightgrey !important;
+
+}
+
+.blue-icon {
+  color: #52a6c9 !important;
+  margin: 0 0.5rem;
+}
+
+.shadow{
+    box-shadow: 0 2px 5px grey;
+}
