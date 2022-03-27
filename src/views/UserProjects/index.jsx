@@ -23,7 +23,7 @@ export const UserProjects = () => {
       setprojects(response.data.data);
     };
     getProjects();
-  }, []);
+  }, []);//eslint-disable-line
 
   const navigateToInquiry = (data) => {
     navigate("/FundingRequest", { state: { behaviour: "inquire", data } });

@@ -13,7 +13,7 @@ export const Layout = (props) => {
     if (!registerContext.loggedIn && location.pathname!=="/Login") {
       navigate("Login", { replace: true });
     }
-  }, [location]);
+  }, [location]);//eslint-disable-line
 
   return (
     <>

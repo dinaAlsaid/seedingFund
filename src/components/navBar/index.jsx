@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import mainLogo from "../../img/logo.png";
-import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { RegisterContext } from "../../context/registration";
 import "./style.css";

@@ -21,7 +21,7 @@ export const RequestForm = (props) => {
       setValue("sector", props.projectData?.sector);
       setValue("description", props.projectData?.description);
     }
-  }, [props.screenBehaviour, props.projectData]);
+  }, [props.screenBehaviour, props.projectData]);//eslint-disable-line
 
   const onSubmit = (data) => {
     props.onSubmit(data);
