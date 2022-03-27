@@ -16,7 +16,7 @@ export const Login = () => {
       navigate("/");
     }
 
-  },[registration.loggedIn])
+  },[registration.loggedIn])//eslint-disable-line
 
   const login = (data) => {
     registration.login(data);
