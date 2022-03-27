@@ -14,7 +14,7 @@ export const UserProjects = () => {
     const getProjects = async () => {
       let response = await axios({
         method: "get",
-        baseURL: `http://localhost:4000/projects`,
+        baseURL: `https://seeding-fund-dina.netlify.app/projects`,
         headers: {
           authorization: `bearer ${registration.token}`,
         },

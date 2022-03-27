@@ -24,7 +24,7 @@ export const FundingReq = (props) => {
   const onSubmit = async (data) => {
     await axios({
       method: "post",
-      baseURL: `http://localhost:4000/project`,
+      baseURL: `https://seeding-fund-dina.netlify.app/project`,
       data,
       headers: {
         authorization: `bearer ${registration.token}`,

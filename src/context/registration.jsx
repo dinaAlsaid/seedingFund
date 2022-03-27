@@ -39,11 +39,10 @@ function RegisterProvider(props) {
 
   //#region HANDLERS
   const login = async (data) => {
-    console.log(data);
     try {
       const response = await axios({
         method: "post",
-        baseURL: `http://localhost:4000/signin`,
+        baseURL: `https://seeding-fund-dina.netlify.app/signin`,
         data,
         headers: {
           authorization: `Basic ${btoa(`${data.username}:${data.password}`)}`,
@@ -59,7 +58,7 @@ function RegisterProvider(props) {
     try {
       const response = await axios({
         method: "post",
-        baseURL: `http://localhost:4000/signup`,
+        baseURL: `https://seeding-fund-dina.netlify.app/signup`,
         data,
       });
       validateToken(response.data.token);
