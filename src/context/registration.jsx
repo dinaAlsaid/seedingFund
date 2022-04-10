@@ -46,6 +46,7 @@ function RegisterProvider(props) {
         data,
         headers: {
           authorization: `Basic ${btoa(`${data.username}:${data.password}`)}`,
+          accept: "Accept: application/json",
         },
       });
       validateToken(response.data.token);
@@ -84,10 +85,6 @@ function RegisterProvider(props) {
     token,
   };
 
-  return (
-    <RegisterContext.Provider value={state}>
-      {props.children}
-    </RegisterContext.Provider>
-  );
+  return <RegisterContext.Provider value={state}>{props.children}</RegisterContext.Provider>;
 }
 export default RegisterProvider;
