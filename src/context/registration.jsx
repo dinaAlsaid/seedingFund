@@ -42,7 +42,7 @@ function RegisterProvider(props) {
     try {
       const response = await axios({
         method: "post",
-        baseURL: `https://seeding-fund-dina.netlify.app/signin`,
+        baseURL: `https://seeding-fund-dina.herokuapp.com/signin`,
         data,
         headers: {
           authorization: `Basic ${btoa(`${data.username}:${data.password}`)}`,
@@ -59,7 +59,7 @@ function RegisterProvider(props) {
     try {
       const response = await axios({
         method: "post",
-        baseURL: `https://seeding-fund-dina.netlify.app/signup`,
+        baseURL: `https://seeding-fund-dina.herokuapp.com/signup`,
         data,
       });
       validateToken(response.data.token);
